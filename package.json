@@ -1,0 +1,15 @@
+{
+  "name": "films-backend",
+  "version": "v0.1",
+  "description": "Proyecto para hacer los 3 ejercicios de frontend backend",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "author": "Diego Miguel Martín-Caro",
+  "license": "GPL-2.0-only",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.3"
+  }
+}
