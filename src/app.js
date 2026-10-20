@@ -87,22 +87,22 @@ app.post('/films/', (req, res) => {
     const original_country = req.body.original_country;
 
     if (films[title] !== undefined) {
-        res.status(403).json({
+        return res.status(403).json({
             error: 'Error 403. Film already exists'
         })
     }
     if (typeof duration !== 'number' || duration < 0) {
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Error 400. Duration must be a number greater than 0'
         })
     }
     if (typeof title === 'undefined' || typeof argument === 'undefined') {
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Error 400. Title and Argument are mandatory fields.'
         })
     }
     if (typeof room_number !== 'number' || room_number <= 0 || room_number > 9 ) {
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Error 400. Room_number must be a number between 1 and 9.'
         })
     }
