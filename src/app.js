@@ -68,7 +68,7 @@ app.get('/films/:title', (req, res) => {
     const film = req.params.title;
 
     if (films[film] === undefined) {
-    res.status(404).json({
+    return res.status(404).json({
         error: 'Error 404. Film not found'
     });
 }
@@ -96,7 +96,7 @@ app.post('/films/', (req, res) => {
             error: 'Error 400. Duration must be a number greater than 0'
         })
     }
-    if (typeof title === 'undefined' || typeof argument === 'undefined') {
+    if (title === "" ||argument === "") {
         return res.status(400).json({
             error: 'Error 400. Title and Argument are mandatory fields.'
         })
@@ -123,7 +123,7 @@ app.post('/films/', (req, res) => {
 app.delete('/films/:title', (req, res) => {
     const title = req.params.title;
     if (films[title] === undefined) {
-        res.status(404).json({
+        return res.status(404).json({
             error: 'Error 404. Film not found'
         });
     }
@@ -133,7 +133,7 @@ app.delete('/films/:title', (req, res) => {
     res.status(204).end();
 });
 
-app.put('/films/:film', (req, res) => {
+app.put('/films/:title', (req, res) => {
     const title = req.params.title;
     const argument = req.body.argument;
     const premiere_date = req.body.premiere_date;
@@ -142,7 +142,13 @@ app.put('/films/:film', (req, res) => {
     const room_number = req.body.room_number;
     const available_in_IMAX = req.body.available_in_IMAX;
     const original_country = req.body.original_country;
-    
+
+    if (films[title] === undefined) {
+        return res.status(404).json({
+            error: 'Error 404. Film not found'
+        });
+    }
+
     films[title] = {
         argument: argument,
         premiere_date: premiere_date,
